@@ -38,3 +38,10 @@ zbior2.clear()
 print((zbior4))
 print((zbior2))
 zbior2.update(zbior4)
+
+zb3 ={1,2,3,4,5,6,8,9}
+print(sum(zb3))
+print((max(zb3)))
+print(min(zb3))
+print(len(zb3))
+print((sorted((zb3))))

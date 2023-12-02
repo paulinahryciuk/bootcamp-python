@@ -26,35 +26,55 @@
 # rabat = 25 if suma_zam>150 else 0
 # print(f"rabacik to {rabacik}")
 
+#
+# logi = ["console", "email", "inny"]
+# import random
+#
+# log = random.choice(logi)
+# if log == "console":
+#     print("critical")
+# elif log == "email":
+#     print("medium")
+# else:
+#     print("inne")
+#
+# punkty = 0
+# pytanie1 = int(input("ile to jest 1 + 1 "))
+# pytanie2 = int(input("ile to jest 2 + 2 "))
+# pytanie3 = int(input("ile to jest 3 + 3 "))
+# if pytanie1 == 2:
+#     print("good job")
+#     punkty += 1
+# else:
+#     print("zla odpowiedz")
+# if pytanie2 == 4:
+#     print("good job")
+#     punkty += 1
+# else:
+#     print("zla odpowiedz")
+# if pytanie3 == 6:
+#     print("good job")
+#     punkty += 1
+# else:
+#     print("zla odpowiedz")
+# print(f"uzyskales {punkty} punktow")
 
-logi = ["console", "email", "inny"]
-import random
+lang = input("jezyk")
+match lang:
+    case "python":
+        print("lubie pythona")
+    case "java":
+        print("java to kawa")
+    case _:
+        print("nie znam takiego")
 
-log = random.choice(logi)
-if log == "console":
-    print("critical")
-elif log == "email":
-    print("medium")
-else:
-    print("inne")
+dane = ''
+match dane:
+    case [a,b,c]:
+        print(f"lista z 3 elementami ")
+    case {"nazwa":n, "wiek": w}:
+        print(f"slownik reprezentujacy {n} osobe")
+    case _:
+        print("inne")
 
-punkty = 0
-pytanie1 = int(input("ile to jest 1 + 1 "))
-pytanie2 = int(input("ile to jest 2 + 2 "))
-pytanie3 = int(input("ile to jest 3 + 3 "))
-if pytanie1 == 2:
-    print("good job")
-    punkty += 1
-else:
-    print("zla odpowiedz")
-if pytanie2 == 4:
-    print("good job")
-    punkty += 1
-else:
-    print("zla odpowiedz")
-if pytanie3 == 6:
-    print("good job")
-    punkty += 1
-else:
-    print("zla odpowiedz")
-print(f"uzyskales {punkty} punktow")
+

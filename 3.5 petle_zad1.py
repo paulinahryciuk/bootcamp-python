@@ -25,3 +25,12 @@ ludzie = ["ada", 'ola', 'ania']
 wiek = [10,20,30]
 for n in range(len(ludzie)):
     print(ludzie[n],wiek[n])
+
+for i in range(-10,0,2):
+    print(i)
+
+for i in range (10,0,-2):
+    print(i)
+
+c = {"name":"radek", "age"}:{5}
+print({v: k for k, v in c.items() })

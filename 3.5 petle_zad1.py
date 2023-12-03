@@ -32,5 +32,5 @@ for i in range(-10,0,2):
 for i in range (10,0,-2):
     print(i)
 
-c = {"name":"radek", "age"}:{5}
+c = {"name":"radek", "age":"5"}
 print({v: k for k, v in c.items() })

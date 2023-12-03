@@ -45,30 +45,30 @@ print(krotka[2])
 
 # 5
 list_reverse = list.copy()
-list_reverse.sort(reverse = True)
+list_reverse.sort(reverse=True)
 print(list_reverse)
 
-#6
+# 6
 maximum = max(list)
 print(maximum)
 
-#7
+# 7
 text_1 = "Python"
 text_2 = "jest super!"
 text_3 = text_1 + " " + text_2
 print(text_3)
 
-#8
+# 8
 text_4 = "Lubie Pythona"
-text_5 = text_4.replace("Pythona","programowanie")
+text_5 = text_4.replace("Pythona", "programowanie")
 print((text_5))
 
-#9
+# 9
 text_4 = "Lubie Pythona"
 space = text_4.index(' ')
-new_text = text_4[(space+1):-1]
+new_text = text_4[(space + 1):-1]
 print((new_text))
 
-#10
-nieparzyste = [1,3,5,7,9]
+# 10
+nieparzyste = [1, 3, 5, 7, 9]
 print(nieparzyste)

@@ -120,32 +120,39 @@ obl_srednia(lista)
 #zadanie 1
 
 tekst = input("Podaj swoj teskt: ")
+filtr = input("Czy ktres slowo ktore chcesz pominac w analizie: ")
+tekst_temp = tekst.replace(filtr, "")
+print(f"Twoj nowy tekst to: {tekst_temp}")
+slownik = {}
 
-def podziel(tekst):
+def podziel(tekst_temp):
     global podzielony
-    podzielony = tekst.split(" ")
+    podzielony = tekst_temp.strip().replace("  "," ").split(" ")
     print(f"Twoj tekst sklada sie ze slow: {podzielony} ")
 
-try:
-    podziel(tekst)
-    2/len(tekst)
 
-    slownik = {}  # mialo byc przez def
+def zlicz(podzielony):
     for i in podzielony:
         a = podzielony.count(i)
-        print(f"slowo {i} wystepuje {a} razy")
-        slownik[i] =a
-    print("slownik z liczba wsytapien: " , slownik)
+        slownik[i] = a
+    print("slownik z liczba wsytapien: ", slownik)
 
-#filtracja
+
+try:
+    podziel(tekst_temp)
+    2/len(tekst_temp)
+    zlicz(podzielony)
+
+
+
 except ValueError:
     print("Blad wartosci")
 except ZeroDivisionError:
     print("Twoj tekst jest pusty")
 else:
-    print("Twoj tekst jest prawidlowy")
+    print("Analiza przebiegla pomyslnie")
 finally:
-    print("koiec pracy")
+    print("Koniec pracy")
 
 
 

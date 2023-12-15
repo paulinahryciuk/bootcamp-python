@@ -75,51 +75,26 @@ random.shuffle(haslo)
 print(f" Twoje haslo: {''.join(haslo)}")
 
 
-#Zad 5 liczba pierwsza
+# Zad 5 liczba pierwsza
 
 
-# def jest_pierwsza (liczba):
-#     lista_dzielnikow = []
-#     for i in range(1,liczba):
-#         if liczba % i !=0:
-#             lista_dzielnikow.append(i)
-#             if len(lista_dzielnikow)>2:
-#                 print ("false")
-#
-# liczba = int(input("Podaj liczbe: "))
-# jest_pierwsza (liczba)
+def jest_pierwsza(liczba):
+    lista_dzielnikow = []
+    for i in range(1, liczba):
+        if liczba % i == 0:
+            lista_dzielnikow.append(i)
+    if liczba == 1:
+        print("Liczba musi byc wieksza od 1")
+    elif len(lista_dzielnikow) >= 2:
+        print("Czy jest liczba pierwsza?")
+        print(bool(0))
+    else:
+        print("Czy jest liczba pierwsza?")
+        print(bool(1))
 
-# def funkcja (liczba):
-#     print("Podaj liczbe")
-#     def jest_pierwsza(liczba):
-#         print("liczba pierwsza")
-#     def nie_jest_pierwsza(liczba):
-#         print("liczba nie jest pierwsza")
-#
-#     lista_dzielnikow = []
-#     for i in range(1,liczba):
-#         if liczba % i !=0:
-#             lista_dzielnikow.append(i)
-#         if len(lista_dzielnikow)>2:
-#             return nie_jest_pierwsza()
-#         else:
-#             return jest_pierwsza()
-#
-# pierwsza = funkcja()
 
-#rozwiazanie
-# def czy_pierwsza (liczba):
-#     lista_dzielnikow = []
-#     for i in range(1,liczba):
-#         if liczba % i !=0:
-#             lista_dzielnikow.append(i)
-#         if len(lista_dzielnikow)>2:
-#             return False
-#         else:
-#             return True
-#
-# czy_pierwsza (3)
-# #niestety nie dziala:(
+liczba = int(input("Podaj liczbe: "))
+jest_pierwsza(liczba)
 
 # zadanie 1
 

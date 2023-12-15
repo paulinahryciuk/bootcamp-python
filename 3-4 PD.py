@@ -161,3 +161,13 @@ finally:
 
 
 
+# Zad 4
+lista1 = [1, 2, "A"]
+lista2 = [3, 2, "A"]
+
+
+def unikalne(lista1, lista2):
+    print(list(set(lista1) & set(lista2)))
+
+
+unikalne(lista1, lista2)

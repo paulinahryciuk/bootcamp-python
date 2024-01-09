@@ -31,13 +31,13 @@ class Book(Library):
         return self.resource.append(title)
 
 
-class User(Book):
+class User(Library):
     """
     Klasa opisujaca uzytkownika biblioteki
     """
 
-    def __init__(self, resource, title, account):
-        super().__init__(resource, title)
+    def __init__(self, resource, account):
+        super().__init__(resource)
         self.account = account
 
     def show_account(self):
@@ -53,7 +53,7 @@ class User(Book):
 
 bibl_resource = ["Potop", "Nad Niemnem", "Lalka", "Romeo i Julia"]
 user1_account = ["Basnie", "Mity"]
-user1 = User(bibl_resource, "Basnie", user1_account)
+user1 = User(bibl_resource, user1_account)
 ks1 = Book(bibl_resource,"A")
 
 print("Witamy w bibliotece!")
@@ -72,9 +72,10 @@ while True:
         user1.show_account()
     elif task==str(3):
         book_gift = input("Jaka ksiazke chcesz dodac do zasobu? ")
-        biblioteka.adding_book(book_gift)
-        print(biblioteka.show_resources())
+        ks1.adding_book(book_gift)
+        ks1.show_resources()
     elif task == "4":
+        print ("Do zobaczenia!")
         break
     else:
         print("Sprobuj jeszcze raz, wybrales zly numer")

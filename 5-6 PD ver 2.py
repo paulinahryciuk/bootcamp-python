@@ -51,31 +51,42 @@ class User(Library):
         return self.account.remove(title)
         return self.resource.append(title)
 
-bibl_resource = ["Potop", "Nad Niemnem", "Lalka", "Romeo i Julia"]
-user1_account = ["Basnie", "Mity"]
+bibl_resource = ["POTOP", "NAD NIEMNEM", "LALKA", "ROMEO I JULIA"]
+user1_account = ["BASNIE", "MITY"]
 user1 = User(bibl_resource, user1_account)
 ks1 = Book(bibl_resource,"A")
 
 print("Witamy w bibliotece!")
 while True:
-    print("1. Chce wypozyczyc ksiazke\n2. Chce oddac ksiazke\n3. Chce podarowac ksiazke dla biblioteki\n4. Koniec")
-    task = input("Wybieram: ")
-    if task==str(1):
-        book_user = input("Jaka ksiazke chcesz wypozyczyc? ")
-        user1.borrowing(book_user)
-        print("Podsumowanie:")
-        user1.show_account()
-    elif task == str(2):
-        book_return = input("Jaka ksiazke oddajesz? ")
-        user1.ret_book(book_return)
-        print("Podsumowanie:")
-        user1.show_account()
-    elif task==str(3):
-        book_gift = input("Jaka ksiazke chcesz dodac do zasobu? ")
-        ks1.adding_book(book_gift)
-        ks1.show_resources()
-    elif task == "4":
-        print ("Do zobaczenia!")
-        break
+    print("-----------------------------------\nWybierz odpowiednia opcje: \n1. Chce wypozyczyc ksiazke\n2. Chce oddac ksiazke\n3. Chce podarowac ksiazke dla biblioteki\n4. Koniec")
+    task = input("Wybieram: ").strip()
+    try:
+        if task==str(1):
+            book_user = input("Jaka ksiazke chcesz wypozyczyc? ").upper().strip()
+            if book_user in bibl_resource:
+                user1.borrowing(book_user)
+            else:
+                print("Ksiazka nie jest dostepna do wypozyczenia")
+        elif task == str(2):
+            book_return = input("Jaka ksiazke oddajesz? ").upper().strip()
+            user1.ret_book(book_return)
+        elif task==str(3):
+            book_gift = input("Jaka ksiazke chcesz dodac do zasobu? ").upper().strip()
+            ks1.adding_book(book_gift)
+            ks1.show_resources()
+        elif task == "4":
+            print ("Do zobaczenia!")
+            break
+        else:
+            print("Sprobuj jeszcze raz, wybrales zly numer")
+    except ValueError:
+        print("Błąd wartości - nie masz takiej ksiazki")
+    except  TypeError:
+        print("Bład typu")
+    except Exception as e:
+        print("Błąd", e)
     else:
-        print("Sprobuj jeszcze raz, wybrales zly numer")
+        print("Podsumowanie:")
+        user1.show_account()
+    finally:
+        print("Dziekujemy za odzwiedzenie naszej biblioteki")

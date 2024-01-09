@@ -27,8 +27,8 @@ class Book(Library):
         else:
             print(f"Ksiazka {self.title} jest aktualnie wypozyczona")
 
-    def adding_book(self):
-        return self.resource.append(self.title)
+    def adding_book(self, title):
+        return self.resource.append(title)
 
 
 class User(Book):
@@ -43,17 +43,38 @@ class User(Book):
     def show_account(self):
         print(f"Uzytkownik na swoim koncie ma wypozyczone pozycje: {self.account}")
 
-    def borrowing(self):
-        return self.account.append(self.title)
-        return self.resource.remove(self.title)
+    def borrowing(self, title):
+        return self.account.append(title)
+        return self.resource.remove(title)
 
-    def ret_book(self):
-        return self.account.remove(self.title)
-        return self.resource.append(self.title)
+    def ret_book(self, title):
+        return self.account.remove(title)
+        return self.resource.append(title)
 
-u1 = User(["Potop", "Nad Niemnem", "Lalka", "Romeo i Julia"],"Lalka",["AAA"])
-u1.show_account()
-u1.borrowing()
-u1.show_account()
-u1.ret_book()
-u1.show_account()
+bibl_resource = ["Potop", "Nad Niemnem", "Lalka", "Romeo i Julia"]
+user1_account = ["Basnie", "Mity"]
+user1 = User(bibl_resource, "Basnie", user1_account)
+ks1 = Book(bibl_resource,"A")
+
+print("Witamy w bibliotece!")
+while True:
+    print("1. Chce wypozyczyc ksiazke\n2. Chce oddac ksiazke\n3. Chce podarowac ksiazke dla biblioteki\n4. Koniec")
+    task = input("Wybieram: ")
+    if task==str(1):
+        book_user = input("Jaka ksiazke chcesz wypozyczyc? ")
+        user1.borrowing(book_user)
+        print("Podsumowanie:")
+        user1.show_account()
+    elif task == str(2):
+        book_return = input("Jaka ksiazke oddajesz? ")
+        user1.ret_book(book_return)
+        print("Podsumowanie:")
+        user1.show_account()
+    elif task==str(3):
+        book_gift = input("Jaka ksiazke chcesz dodac do zasobu? ")
+        biblioteka.adding_book(book_gift)
+        print(biblioteka.show_resources())
+    elif task == "4":
+        break
+    else:
+        print("Sprobuj jeszcze raz, wybrales zly numer")

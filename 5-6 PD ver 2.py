@@ -1,4 +1,4 @@
-#Biblioteka
+# Biblioteka
 
 class Library:
     """
@@ -8,7 +8,6 @@ class Library:
     def __init__(self, resource):
         self.resource = resource
 
-
     def show_resources(self):
         print(f"Aktualny zasob biblioteki: \n{self.resource}")
 
@@ -17,6 +16,7 @@ class Book(Library):
     """
     Klasa opisujaca ksiazki
     """
+
     def __init__(self, resource, title):
         super().__init__(resource)
         self.title = title
@@ -51,17 +51,19 @@ class User(Library):
         return self.account.remove(title)
         return self.resource.append(title)
 
+
 bibl_resource = ["POTOP", "NAD NIEMNEM", "LALKA", "ROMEO I JULIA"]
 user1_account = ["BASNIE", "MITY"]
 user1 = User(bibl_resource, user1_account)
-ks1 = Book(bibl_resource,"A")
+ks1 = Book(bibl_resource, "A")
 
 print("Witamy w bibliotece!")
 while True:
-    print("-----------------------------------\nWybierz odpowiednia opcje: \n1. Chce wypozyczyc ksiazke\n2. Chce oddac ksiazke\n3. Chce podarowac ksiazke dla biblioteki\n4. Koniec")
+    print(
+        "-----------------------------------\nWybierz odpowiednia opcje: \n1. Chce wypozyczyc ksiazke\n2. Chce oddac ksiazke\n3. Chce podarowac ksiazke dla biblioteki\n4. Koniec")
     task = input("Wybieram: ").strip()
     try:
-        if task==str(1):
+        if task == str(1):
             book_user = input("Jaka ksiazke chcesz wypozyczyc? ").upper().strip()
             if book_user in bibl_resource:
                 user1.borrowing(book_user)
@@ -70,12 +72,12 @@ while True:
         elif task == str(2):
             book_return = input("Jaka ksiazke oddajesz? ").upper().strip()
             user1.ret_book(book_return)
-        elif task==str(3):
+        elif task == str(3):
             book_gift = input("Jaka ksiazke chcesz dodac do zasobu? ").upper().strip()
             ks1.adding_book(book_gift)
             ks1.show_resources()
         elif task == "4":
-            print ("Do zobaczenia!")
+            print("Do zobaczenia!")
             break
         else:
             print("Sprobuj jeszcze raz, wybrales zly numer")

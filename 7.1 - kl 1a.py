@@ -21,6 +21,10 @@ class MyFirstClass:
     def reset(self):
         self.move(0,0)
 
+    def calculate(self,other: "MyFirstClass") -> float:
+        return math.hypot(self.x - other.x, self.y - other.y)
+
+
     def __str__(self):
         return f"({self.x,self.y})"
 
@@ -35,3 +39,10 @@ print(ob2)
 
 lista_punkty = [ob,ob2]
 print(lista_punkty)
+print("____________")
+
+ob3 = MyFirstClass(10,20)
+ob4 = MyFirstClass(15,30)
+print(ob3)
+print(ob4)
+print(ob3.calculate(ob4))

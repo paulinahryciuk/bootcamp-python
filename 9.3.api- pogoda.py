@@ -1,6 +1,7 @@
 import requests
+from datetime import datetime
 # https://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid={API key}
-url = 'http://api.openweathermap.org/data/2.5/weather?q=Warszawa&appid=99a24a78addf4a2c41947189fcff67f7&&lang=p&format=jsonl&units=metric'
+url = 'http://api.openweathermap.org/data/2.5/weather?q=Warszawa&appid=-KEY TUTAJ TOKEN'
 
 page = requests.get(url)
 json = page.json()
@@ -12,3 +13,7 @@ temp = json['main']['temp']
 print(temp)
 name = json['name']
 print(name)
+sunrise = json['sys'] ['sunrise']
+print(sunrise)
+dt_object = datetime.fromtimestamp(sunrise)
+print(dt_object)

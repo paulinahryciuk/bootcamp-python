@@ -1,0 +1,66 @@
+{
+  "results": [
+    {
+      "gender": "male",
+      "name": {
+        "title": "Mr",
+        "first": "Sander",
+        "last": "Jensen"
+      },
+      "location": {
+        "street": {
+          "number": 9508,
+          "name": "Grønnegade"
+        },
+        "city": "Ryslinge",
+        "state": "Nordjylland",
+        "country": "Denmark",
+        "postcode": 62067,
+        "coordinates": {
+          "latitude": "-45.4331",
+          "longitude": "-57.0525"
+        },
+        "timezone": {
+          "offset": "+2:00",
+          "description": "Kaliningrad, South Africa"
+        }
+      },
+      "email": "sander.jensen@example.com",
+      "login": {
+        "uuid": "c38f4a89-31ac-4cae-84b8-e2fc84a0abc6",
+        "username": "sadleopard915",
+        "password": "doberman",
+        "salt": "ofQUUP4V",
+        "md5": "5d3e2fbcad4d4cc1b9f414c0be42e35d",
+        "sha1": "cf9f96cfda3c72f3e66745103fd058bbb52d4910",
+        "sha256": "b8cc31c4ebc711a2fe2f419f75776da1853d5c695bf45723f27a9eef3ebef9fc"
+      },
+      "dob": {
+        "date": "1953-04-13T03:18:14.983Z",
+        "age": 70
+      },
+      "registered": {
+        "date": "2022-04-08T03:05:55.266Z",
+        "age": 1
+      },
+      "phone": "52606774",
+      "cell": "16145036",
+      "id": {
+        "name": "CPR",
+        "value": "120453-2470"
+      },
+      "picture": {
+        "large": "https://randomuser.me/api/portraits/men/77.jpg",
+        "medium": "https://randomuser.me/api/portraits/med/men/77.jpg",
+        "thumbnail": "https://randomuser.me/api/portraits/thumb/men/77.jpg"
+      },
+      "nat": "DK"
+    }
+  ],
+  "info": {
+    "seed": "8095ce78e9c2817d",
+    "results": 1,
+    "page": 1,
+    "version": "1.4"
+  }
+}

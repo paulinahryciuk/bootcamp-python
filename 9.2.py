@@ -7,7 +7,7 @@ print(response)
 print(response.text)
 data = response.json()
 
-# class Resultss(BaseModel)
+# class Results(BaseModel)
 
 results = data['results']
 print("-----")
@@ -24,3 +24,21 @@ print(photo_url)
 response_photo = requests.get(photo_url)
 with open('user_photo.jpg','wb') as f:
     f.write(response_photo.content)
+
+class Name(BaseModel):
+     title:str
+     first:str
+     last:str
+
+
+
+class User(BaseModel):
+    name: Name
+    email:str
+    picture: dict
+
+u1 = data['results'][0]
+user = User(**u1)
+print(user)
+
+print(user.name.first)

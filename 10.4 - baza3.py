@@ -10,9 +10,23 @@ try:
     insert = '''
     INSERT INTO software (id,name,price) VALUES(1,'Python',100);
     '''
+
+    insert2 = '''
+        INSERT INTO software (id,name,price) VALUES(2,'Java',1000);
+        '''
+
+    insert3 = '''
+        INSERT INTO software (id,name,price) VALUES(3,'C++',1100);
+        '''
+
+
     select = '''
     SELECT * FROM software;
     '''
+
+    cursor.execute(insert2)
+    cursor.execute(insert3)
+    sql_connection.commit()
 
     for row in cursor.execute(select):
         print(row)

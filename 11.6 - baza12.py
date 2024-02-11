@@ -22,3 +22,5 @@ class Course(Base):
     id = Column(Integer, primary_key=True)
     title = Column(String(100))
     students = relationship('Student', secondary=student_course_table, back_populates="courses")
+
+engine = create_engine('sqlite:///kursy.db')

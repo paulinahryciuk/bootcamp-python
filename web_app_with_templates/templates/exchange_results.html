@@ -1,3 +1,4 @@
+{% from 'macros.html' import show_flash_message %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,13 +6,16 @@
     <title>Exchange Results</title>
 </head>
 <body>
+    {% for message in get_flashed_messages() %}
+        {{ show_flash_message(message) }}
+    {% endfor %}
+
 <h1>You selected {{ currency }} and amount {{amount}}</h1>
-    {% if currency =='EUR' %}
-        <img src="{{url_for('static', filename = 'currencies/2.jpg')}}">
-    {% elif currency =='USD' %}
-        <img src="{{url_for('static', filename = 'currencies/1.jpg')}}">
+
+    {% if currency_info.code != 'unknown' %}
+        <img src="{{url_for('static', filename = currency_info.flag)}}">
     {% else %}
-        <img src="{{url_for('static',filename='kantor.png')}}">
+        <p>This currency is unknown for us</p>
     {% endif %}
 </body>
 </html>

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Exchange Results</title>
+</head>
+<body>
+<h1>You selected {{ currency }} and amount {{amount}}</h1>
+    {% if currency =='EUR' %}
+        <img src="{{url_for('static', filename = 'currencies/2.jpg')}}">
+    {% elif currency =='USD' %}
+        <img src="{{url_for('static', filename = 'currencies/1.jpg')}}">
+    {% else %}
+        <img src="{{url_for('static',filename='kantor.png')}}">
+    {% endif %}
+</body>
+</html>

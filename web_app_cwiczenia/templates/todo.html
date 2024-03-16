@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block title%} zadania do wykonania {% endblock %}
+{% block content%}
+    {% for i in taski %}
+        <li> {{i}} </li>
+    {% endfor %}
+
+<form action="" method="POST">
+    <input type = "text" name = "taski" >
+    <input type = "submit" value= "Dodaj" >
+
+</form>
+{% endblock %}

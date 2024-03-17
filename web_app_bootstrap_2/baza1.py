@@ -12,8 +12,16 @@ try:
     user varchar(5),
     trans_date DATE NULL DEFAULT(date()));
     '''
-
-    cursor.execute(query)
+    create_users = '''CREATE TABLE users(id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name VARCHAR(100) NOT NULL UNIQUE,
+    EMAIL VARCHAR(100) NOT NULL UNIQUE,
+    password TEXT,
+    is_active BOOLEAN NOT NULL DEFAULT 0,
+    is_admin BOOLEAN NOT NULL DEFAULT 0
+    );'''
+    
+    # cursor.execute(query)
+    cursor.execute(create_users)
 
     sql_conn.commit()
 

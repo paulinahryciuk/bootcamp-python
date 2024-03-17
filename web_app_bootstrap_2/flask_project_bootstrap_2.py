@@ -1,7 +1,12 @@
 import sqlite3
 from datetime import date
 
-from flask import Flask, render_template, request, flash, g, redirect, url_for
+from flask import Flask, render_template, request, flash, g, redirect, url_for, session
+
+import binascii
+import hashlib
+import random
+import string
 
 app_info = {
     'db_file': 'data/cantor.db'
@@ -24,6 +29,88 @@ def close_db(error):
     if hasattr(g, 'sqlite_db'):
         g.sqlite_db.close()
         print(error)
+
+
+class UserPass:
+    def __init__(self,user='', password=''):
+        self.user = user
+        self.password = password
+
+    def hash_password(self):
+        os_urandom_static = b'\xe2sG}\xfd\xc0\xd0\xbb\xda\xad\x84\xc30-\xc2\x1c\x860\x1c\x1a\x91\xf3\xe7kr\xf1AM$x\xc4\x08\x89\xaa"L\xe7R\'"\xf1\xc5\x805\xdez[%\x05\xd2j\x1f\x0c\\\xdfX\xa5$$\xe2'
+        salt = hashlib.sha256(os_urandom_static).hexdigest().encode('ascii')
+        pwdhash = hashlib.pbkdf2_hmac('sha512', self.password.encode('utf-8'), salt, 100000)
+        pwdhash = binascii.hexlify(pwdhash)
+        return(salt+ pwdhash).decode('ascii')
+
+    def verify_password(self,stored_password, provided_password):
+        salt = stored_password[:64]
+        stored_password = stored_password[64:]
+        pwdhash = hashlib.pbkdf2_hmac('sha512', provided_password.encode('utf-8'), salt.encode('utf-8'),
+                                      10000)
+        pwdhash = binascii.hexlify(pwdhash).decode('ascii')
+        return pwdhash == stored_password
+    def get_random_user_password(self):
+        random_user = ''.join(random.choice(string.ascii_lowercase) for i in range(3))
+        self.user = random_user
+
+        password_characters = string.ascii_letters
+        random_password = ''.join(random.choice(password_characters) for i in range(3))
+        self.password = random_password
+
+    def login_user(self):
+        db = get_db()
+        sql_statement = 'SELECT id, name, email, password, is_active, is_admin FROM users WHERE name=?'
+        cur = db.execute(sql_statement, [self.user])
+        user_record = cur.fetchone()
+
+        if user_record!=None and self.verify_password(user_record['password'], self.password):
+            return user_record
+        else:
+            self.user = None
+            self.password = None
+            return None
+
+@app.route('/login', methods = ['GET', 'POST'])
+def login():
+    if request.method == 'GET':
+        return render_template('login.html', active_menu='login')
+    else:
+        user_name = '' if "user_name" not in request.form else request.form['user_name']
+        user_pass = '' if "user_pass" not in request.form else request.form['user_pass']
+
+    login = UserPass(user_name, user_pass)
+    login_record = login.login_user()
+
+    if login_record !=None:
+        session['user'] = user_name
+        flash(f"Login succesfull, welcome {user_name}")
+        return redirect(url_for('index'))
+    else:
+        flash("login failed, try again!")
+        return render_template('login.html', active_menu= 'login')
+
+@app.route('/')
+
+@app.route('/init_app')
+def init_app():
+    db = get_db()
+    sql_statement = 'SELECT COUNT (*) AS cnt FROM users WHERE is_active AND is_admin;'
+    cur = db.execute(sql_statement)
+    active_admins = cur.fetchone()
+
+    if active_admins !=None and active_admins['cnt'] >0:
+        flash('Application is already set-up. Nothing to do')
+        return redirect(url_for('index'))
+    user_pass = UserPass()
+    user_pass.get_random_user_password()
+    db.execute('''
+    INSERT INTO users(name, email, password, is_active, is_admin)
+    VALUES(?,?,?,True,True);
+    ''', [user_pass.user, 'none@no.no', user_pass.hash_password()])
+    db.commit()
+    flash('User {} with password {} has been added'.format(user_pass.user, user_pass.password))
+    return redirect(url_for('index'))
 
 
 class Currency:

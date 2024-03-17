@@ -5,10 +5,12 @@
 {% endblock %}
 
 {% block content %}
-    {{ super () }}
+<div class ="container">
     {% if currency_info.code != 'unknown' %}
-        <img src="{{url_for('static', filename = currency_info.flag)}}">
+        <img src="{{url_for('static', filename = currency_info.flag)}}"
+        class = "rounded-circle mx-auto d-block">
     {% else %}
         <p>This currency is unknown for us</p>
     {% endif %}
+    </div>
 {% endblock %}

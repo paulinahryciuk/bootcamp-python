@@ -1,0 +1,1 @@
+cos tamex2.txt

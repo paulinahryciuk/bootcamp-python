@@ -1,4 +1,4 @@
-from flask import Flask,render_template, url_for, request
+from flask import Flask,render_template, url_for, request, redirect
 
 app = Flask(__name__)
 
@@ -16,11 +16,14 @@ def strona():
 
 @app.route('/formularz', methods = ['GET','POST'])
 def formularz():
-    print(request.method)
+    # print(request.method)
     if request.method == 'GET':
         return render_template('formularz.html')
     else:
-        return redirect(url_for('strona'))
+        zmienna = request.form['wartosc']
+        # return redirect(url_for('strona'))
+        return redirect('str')
+
 
 if __name__ == '__main__':
     app.run(debug=True)
